@@ -19,14 +19,14 @@ import com.google.gson.JsonObject;
 /**
  * Servlet implementation class LoginServlet
  */
-@WebServlet("/login")
-public class LoginServlet extends HttpServlet {
+@WebServlet("/bloglogin")
+public class BlogLoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LoginServlet() {
+    public BlogLoginServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,11 +34,11 @@ public class LoginServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// jsp 포워딩
-		RequestDispatcher rd = request.getRequestDispatcher("jsp/login.jsp");
-		rd.forward(request, response);
-	}
+//	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//		// jsp 포워딩
+//		RequestDispatcher rd = request.getRequestDispatcher("jsp/login.jsp");
+//		rd.forward(request, response);
+//	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
@@ -50,7 +50,14 @@ public class LoginServlet extends HttpServlet {
 		System.out.printf("id : %s, pwd : %s\n", id, pwd);
 		
 		//id, pwd 정합성 체크
-		boolean result = true;
+		boolean result = false;
+		if(id.equals("test@naver.com")){
+			result = true;
+		}
+		else {
+			result = false;
+		}
+		
 		if(result){
 			// 세션에 사용자 정보를 생성해서 담기
 			 HttpSession session = request.getSession();
@@ -61,49 +68,14 @@ public class LoginServlet extends HttpServlet {
 			 
 			 session.setAttribute("user",user);
 			 
-			 RequestDispatcher rd = request.getRequestDispatcher("jsp/home.jsp");
+			 RequestDispatcher rd = request.getRequestDispatcher("jsp/myblog.jsp");
 			 rd.forward(request, response);
 		} else{
 			request.setAttribute("msg","error");
-			RequestDispatcher rd = request.getRequestDispatcher("jsp/login.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("jsp/myblog.jsp");
 			rd.forward(request,response);
 			 
 		}
 	}
 	
-	protected void doPost2(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
-		String id = request.getParameter("id");
-		String pwd = request.getParameter("pwd");
-		System.out.printf("id : %s, pwd : %s\n", id, pwd);
-		
-		response.setContentType("application/json;charset=utf-8");
-		PrintWriter out = response.getWriter();
-
-		
-//		{
-//			"id":testid
-//		}
-//		
-//		out.println("{");
-//		out.println("\"id\":" +"\""+ id +"\"");
-//		out.println("}");
-		
-		//JSON Simple Library
-//		JSONObject json = new JSONObject();
-//		json.put("id",id);
-//		System.out.println(json.toJSONString());
-//		out.write(json.toJSONString());
-//		out.close();
-		
-		//Gson Library  사용해서 소스 작성하기
-		Gson gson = new Gson();
-		JsonObject object = new JsonObject();
-		object.addProperty("id", id);
-		String json = gson.toJson(object);
-		out.write(json);
-		out.close();
-		
-	}
-
 }
