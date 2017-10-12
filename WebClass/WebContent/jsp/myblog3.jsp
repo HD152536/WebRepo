@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+ <%@page import="org.dimigo.VO.UserVO" %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -30,14 +31,29 @@
             <div class="inner">
               <h3 class="masthead-brand">블로그</h3>
               <nav class="nav nav-masthead">
-                <a class="nav-link " href="myblog.html">로그인</a>
-                <a class="nav-link " href="myblog2.html">회원가입</a>
-                <a class="nav-link active" href="myblog3.html">버킷리스트</a>
-                <a class="nav-link" href="myblog4.html">소개</a>
-                <a class="nav-link" href="myblog5.html">좋아하는 노래</a>
+              
+              <%
+			    	UserVO user = (UserVO) session.getAttribute("user");
+			    	if(user==null){
+			  %>              
+                <a class="nav-link " href="myblog.jsp">로그인</a>
+                <a class="nav-link " href="myblog2.jsp">회원가입</a>
+                <a class="nav-link active" href="myblog3.jsp">버킷리스트</a>
+                <a class="nav-link" href="myblog4.jsp">소개</a>
+                <a class="nav-link" href="myblog5.jsp">좋아하는 노래</a>
+                <%} else { %>
+                
+                <a class="nav-link " href="/WebClass/bloglogout">로그아웃</a>
+                <a class="nav-link " href="myblog2.jsp">회원가입</a>
+                <a class="nav-link active" href="myblog3.jsp">버킷리스트</a>
+                <a class="nav-link " href="myblog4.jsp">소개</a>
+                <a class="nav-link" href="myblog5.jsp">좋아하는 노래</a>
+                <%} %>
+                
               </nav>
             </div>
           </div>
+          
           <div class="list-group">
 			  <a href="https://namu.wiki/w/%EC%9C%A0%EB%9F%BD/%EB%B0%B0%EB%82%AD%EC%97%AC%ED%96%89" class="list-group-item list-group-item-action">유럽 배낭 여행 가보기</a>
 			  <a href="https://www.youtube.com/watch?v=YUDTV2oOlkY" class="list-group-item list-group-item-action">운동 한가지 정해서 선수급으로 잘하기</a>

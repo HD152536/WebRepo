@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+ <%@page import="org.dimigo.VO.UserVO" %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -30,14 +31,29 @@
             <div class="inner">
               <h3 class="masthead-brand">블로그</h3>
               <nav class="nav nav-masthead">
-                <a class="nav-link " href="myblog.html">로그인</a>
-                <a class="nav-link " href="myblog2.html">회원가입</a>
-                <a class="nav-link " href="myblog3.html">버킷리스트</a>
-                <a class="nav-link  " href="myblog4.html">소개</a>
-                <a class="nav-link active" href="myblog5.html">좋아하는 노래</a>
+              
+              <%
+			    	UserVO user = (UserVO) session.getAttribute("user");
+			    	if(user==null){
+			  %>              
+                <a class="nav-link " href="myblog.jsp">로그인</a>
+                <a class="nav-link " href="myblog2.jsp">회원가입</a>
+                <a class="nav-link " href="myblog3.jsp">버킷리스트</a>
+                <a class="nav-link" href="myblog4.jsp">소개</a>
+                <a class="nav-link active" href="myblog5.jsp">좋아하는 노래</a>
+                <%} else { %>
+                
+                <a class="nav-link " href="/WebClass/bloglogout">로그아웃</a>
+                <a class="nav-link " href="myblog2.jsp">회원가입</a>
+                <a class="nav-link " href="myblog3.jsp">버킷리스트</a>
+                <a class="nav-link" href="myblog4.jsp">소개</a>
+                <a class="nav-link active" href="myblog5.jsp">좋아하는 노래</a>
+                <%} %>
+                
               </nav>
             </div>
           </div>
+          
           <iframe src="https://www.youtube.com/embed/sm0kgEckb3Q"  allowfullscreen></iframe><div class="mastfoot">
           
             <div class="inner">

@@ -49,17 +49,18 @@
 			    	UserVO user = (UserVO) session.getAttribute("user");
 			    	if(user==null){
 			  %>              
-                <a class="nav-link active" href="myblog.jsp">로그인</a>
-                <a class="nav-link " href="myblog2.jsp">회원가입</a>
-                <a class="nav-link " href="myblog3.jsp">버킷리스트</a>
-                <a class="nav-link" href="myblog4.jsp">소개</a>
-                <a class="nav-link" href="myblog5.jsp">좋아하는 노래</a>
+                <a class="nav-link active" href="/WebClass/jsp/myblog.jsp">로그인</a>
+                <a class="nav-link " href="/WebClass/jsp/myblog2.jsp">회원가입</a>
+                <a class="nav-link " href="/WebClass/jsp/myblog3.jsp">버킷리스트</a>
+                <a class="nav-link" href="/WebClass/jsp/myblog4.jsp">소개</a>
+                <a class="nav-link" href="/WebClass/jsp/myblog5.jsp">좋아하는 노래</a>
                 <%} else { %>
                 
                 <a class="nav-link active" href="/WebClass/bloglogout">로그아웃</a>
-                <a class="nav-link " href="myblog3.jsp">버킷리스트</a>
-                <a class="nav-link" href="myblog4.jsp">소개</a>
-                <a class="nav-link" href="myblog5.jsp">좋아하는 노래</a>
+                <a class="nav-link " href="/WebClass/jsp/myblog2.jsp">회원가입</a>
+                <a class="nav-link " href="/WebClass/jsp/myblog3.jsp">버킷리스트</a>
+                <a class="nav-link" href="/WebClass/jsp/myblog4.jsp">소개</a>
+                <a class="nav-link" href="/WebClass/jsp/myblog5.jsp">좋아하는 노래</a>
                 <%} %>
                 
               </nav>
